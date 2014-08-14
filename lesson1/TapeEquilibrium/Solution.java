@@ -12,29 +12,19 @@ class Solution {
 
         Integer minimal = Integer.MAX_VALUE;
 
-        Integer firstSum = 0;
-        Integer lastSum = 0;
+        Integer totalSum = 0;
+        Integer leftSum = 0;
 
-        for (int i=0; i<A.length-1; i++) {
+        for (int i=0; i<A.length; i++) {
+          totalSum += A[i];
+        }
 
-            int[] firstPart = Arrays.copyOfRange(A, 0, i+1);
-            int[] lastPart = Arrays.copyOfRange(A, i+1, A.length);
+        for (int i=0; i<A.length; i++) {
 
-            String data = "";
+            leftSum = leftSum + A[i];
+            Integer rightSum = totalSum - leftSum;
 
-            for (int j=0; j<firstPart.length; j++) {
-                firstSum += firstPart[j];
-            }
-            data += (", LastPart ");
-            for (int j=0; j<lastPart.length; j++) {
-                lastSum += lastPart[j];
-            }
-
-            minimal = Math.min(minimal, Math.abs(firstSum-lastSum));
-
-            firstSum = 0;
-            lastSum = 0;
-
+            minimal = Math.min(minimal, Math.abs(leftSum-rightSum));
         }
 
         return minimal;
