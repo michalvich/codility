@@ -8,12 +8,12 @@ class Solution {
             return 1;
         }
 
-        int modulo = (Y-X)%D;
+        int distance = Y-X;
 
-        if (modulo==0) {
-            return (Y-X)/D;
+        if (distance % D ==0) {
+            return distance/D;
         } else {
-            return ((Y-X)/D)+1;
+            return distance/D + 1;
         }
 
     }
