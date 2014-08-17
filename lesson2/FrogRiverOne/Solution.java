@@ -3,21 +3,24 @@
 
 // you can use System.out.println for debugging purposes, e.g.
 // System.out.println("this is a debug message");
-import java.util.*;
 
 class Solution {
     public int solution(int X, int[] A) {
 
-        final Integer finalDestination = X;
+        final int finalDestination = X;
 
-        List<Integer> existingItems = new ArrayList<Integer>();
+        final int[] steps = new int[X+1];
+
+        int count = 0;
 
         for (int i=0; i<A.length; i++) {
-            Integer value = A[i];
-            if (!existingItems.contains(value)) {
-                existingItems.add(value);
+            int value = A[i];
+            if (value<=finalDestination && steps[value]==0) {
+              steps[value] = 1;
+              count++;
             }
-            if (existingItems.size()+1==finalDestination) {
+
+            if (count==finalDestination) {
                 return i;
             }
         }
